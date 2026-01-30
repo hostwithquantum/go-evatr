@@ -1,7 +1,9 @@
+name: pr
+
 on:
   pull_request:
   schedule:
-    - cron: '0 7 * * *'
+    - cron: '0 9 * * *'
 
 jobs:
   test:

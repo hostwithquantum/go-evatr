@@ -129,7 +129,7 @@ func (s *IntegrationSuite) TestVerificationResults() {
 	)
 	s.Require().NoError(err)
 
-	checkResult := func(fieldName, value string) {
+	checkResult := func(fieldName string, value evatr.VerificationResult) {
 		s.T().Helper()
 
 		switch evatr.VerificationResult(value) {

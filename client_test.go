@@ -116,10 +116,10 @@ func TestValidateVATQualified(t *testing.T) {
 			resp := evatr.ValidationResponse{
 				RequestTimestamp:  time.Now().Format(time.RFC3339),
 				Status:            evatr.StatusValid,
-				CompanyNameResult: string(evatr.VerificationMatch),
-				CityResult:        string(evatr.VerificationMatch),
-				StreetResult:      string(evatr.VerificationMatch),
-				PostalCodeResult:  string(evatr.VerificationMatch),
+				CompanyNameResult: evatr.VerificationMatch,
+				CityResult:        evatr.VerificationMatch,
+				StreetResult:      evatr.VerificationMatch,
+				PostalCodeResult:  evatr.VerificationMatch,
 			}
 			w.Header().Set("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(resp)
@@ -138,8 +138,8 @@ func TestValidateVATQualified(t *testing.T) {
 		)
 		require.NoError(t, err)
 
-		assert.Equal(t, string(evatr.VerificationMatch), result.CompanyNameResult)
-		assert.Equal(t, string(evatr.VerificationMatch), result.CityResult)
+		assert.Equal(t, evatr.VerificationMatch, result.CompanyNameResult)
+		assert.Equal(t, evatr.VerificationMatch, result.CityResult)
 	})
 
 	t.Run("missing company name", func(t *testing.T) {
@@ -159,8 +159,8 @@ func TestValidateVATQualified(t *testing.T) {
 			resp := evatr.ValidationResponse{
 				RequestTimestamp:  time.Now().Format(time.RFC3339),
 				Status:            evatr.StatusValid,
-				CompanyNameResult: string(evatr.VerificationMismatch),
-				CityResult:        string(evatr.VerificationMatch),
+				CompanyNameResult: evatr.VerificationMismatch,
+				CityResult:        evatr.VerificationMatch,
 			}
 			w.Header().Set("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(resp)
@@ -179,7 +179,7 @@ func TestValidateVATQualified(t *testing.T) {
 		)
 		require.NoError(t, err)
 
-		assert.Equal(t, string(evatr.VerificationMismatch), result.CompanyNameResult)
+		assert.Equal(t, evatr.VerificationMismatch, result.CompanyNameResult)
 	})
 }
 

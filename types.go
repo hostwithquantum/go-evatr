@@ -41,16 +41,16 @@ type ValidationResponse struct {
 	Status string `json:"status"`
 
 	// Company name verification result (A/B/C/D)
-	CompanyNameResult string `json:"ergFirmenname,omitempty"`
+	CompanyNameResult VerificationResult `json:"ergFirmenname,omitempty"`
 
 	// Street verification result (A/B/C/D)
-	StreetResult string `json:"ergStrasse,omitempty"`
+	StreetResult VerificationResult `json:"ergStrasse,omitempty"`
 
 	// Postal code verification result (A/B/C/D)
-	PostalCodeResult string `json:"ergPlz,omitempty"`
+	PostalCodeResult VerificationResult `json:"ergPlz,omitempty"`
 
 	// City verification result (A/B/C/D)
-	CityResult string `json:"ergOrt,omitempty"`
+	CityResult VerificationResult `json:"ergOrt,omitempty"`
 }
 
 // GetRequestTimestamp parses the request timestamp.

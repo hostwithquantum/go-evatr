@@ -3,9 +3,19 @@ name: pr
 on:
   pull_request:
   schedule:
-    - cron: '0 9 * * *'
+    - cron: "0 9 * * *"
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: 'examples/simple/go.mod'
+      - run: go vet ./...
+        working-directory: examples/simple
+
   test:
     runs-on: ubuntu-latest
     steps:

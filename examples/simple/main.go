@@ -126,13 +126,13 @@ func getMemberStates(ctx context.Context, client *evatr.Client) {
 	}
 }
 
-func printVerification(field, result string) {
+func printVerification(field, result evatr.VerificationResult) {
 	if result == "" {
 		return
 	}
 
 	var msg string
-	switch evatr.VerificationResult(result) {
+	switch result {
 	case evatr.VerificationMatch:
 		msg = "✓ matches"
 	case evatr.VerificationMismatch:

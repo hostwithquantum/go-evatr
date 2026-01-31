@@ -11,3 +11,13 @@ updates:
         update-types:
           - "minor"
           - "patch"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: gomod
+    directory: /examples/simple
+    schedule:
+      interval: daily

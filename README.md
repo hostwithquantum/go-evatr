@@ -1,6 +1,7 @@
 # go-evatr
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/hostwithquantum/go-evatr.svg)](https://pkg.go.dev/github.com/hostwithquantum/go-evatr)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/hostwithquantum/go-evatr/badge)](https://scorecard.dev/viewer/?uri=github.com/hostwithquantum/go-evatr)
 
 Go client library for the eVatR API (German VAT ID validation system) of the BZSt.
 

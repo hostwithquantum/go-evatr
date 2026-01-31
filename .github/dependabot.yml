@@ -6,6 +6,8 @@ updates:
       time: "15:00"
       timezone: "Europe/Berlin"
       interval: "weekly"
+    allow:
+      - dependency-type: "direct"
     groups:
       go-modules:
         update-types:
@@ -15,9 +17,19 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
+      time: "15:00"
+      timezone: "Europe/Berlin"
+      interval: "daily"
+    groups:
+      action-deps:
+        patterns:
+          - "*"
 
   - package-ecosystem: gomod
     directory: /examples/simple
+    allow:
+      - dependency-type: "direct"
     schedule:
-      interval: daily
+      time: "15:00"
+      timezone: "Europe/Berlin"
+      interval: "weekly"

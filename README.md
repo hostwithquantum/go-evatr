@@ -24,7 +24,7 @@ go get github.com/hostwithquantum/go-evatr
 - [Examples](./examples/) - Working code examples
 - [Error codes](errors.go) - All status codes and their meanings
 
-## Optional Configuration
+### Optional Configuration
 
 ```go
 httpClient := &http.Client{
@@ -39,12 +39,16 @@ client := evatr.NewClient(
 )
 ```
 
+### Usage
+
+The API _advertises_ a daily maintenance window from 23:00 - 5:00 (local). Run potential jobs during the workday to avoid issues — see our dependabot and workflow configuration for examples.
+
 ## License
 
 [mpl-2.0](./LICENSE)
 
 ## Links
 
-- [eVatR API Documentation](https://api.evatr.vies.bzst.de/app)
-- [BZSt (Federal Central Tax Office)](https://www.bzst.de/)
+- [eVatR API Documentation](https://api.evatr.vies.bzst.de/api-docs)
+- [BZSt (Federal Central Tax Office)](https://www.bzst.de/DE/Unternehmen/Identifikationsnummern/Umsatzsteuer-Identifikationsnummer/AuslaendischeUSt-IdNr/auslaendische_ust_idnr_node.html)
 - [VIES VAT Validation](https://ec.europa.eu/taxation_customs/vies/)

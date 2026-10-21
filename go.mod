@@ -1,6 +1,6 @@
 module github.com/hostwithquantum/go-evatr
 
-go 1.24
+go 1.26.10
 
 require github.com/stretchr/testify v1.12.1
 

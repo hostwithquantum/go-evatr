@@ -10,5 +10,5 @@ const (
 	exampleCompanyName = "Team Tito Limited"
 	exampleStreet      = "64 DAME STREET"
 	examplePostalCode  = "Dublin 2"
-	exampleCity        = "Dubline"
+	exampleCity        = "Dublin"
 )

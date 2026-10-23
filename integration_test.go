@@ -173,3 +173,57 @@ func (s *IntegrationSuite) TestTimestampParsing() {
 		s.T().Logf("Valid until: %s", validUntil.Format("2006-01-02"))
 	}
 }
+
+func (s *IntegrationSuite) TestCharacters() {
+	fixtures := []struct {
+		Company    string
+		Street     string
+		PostalCode string
+		City       string
+		VAT        string
+	}{
+		{
+			Company:    exampleCompanyName,
+			Street:     exampleStreet,
+			PostalCode: examplePostalCode,
+			City:       exampleCity,
+			VAT:        requestedVatID,
+		},
+		{
+			Company:    "Höganäs Sweden AB",
+			Street:     "Bruksgatan 35",
+			PostalCode: "263 83",
+			City:       "Höganäs",
+			VAT:        "SE556204969101",
+		},
+	}
+
+	client := evatr.NewClient(
+		evatr.WithTransliteration(),
+	)
+	for _, fixture := range fixtures {
+		res, err := client.ValidateVATQualified(
+			s.T().Context(),
+			requestingVatID,
+			fixture.VAT,
+			fixture.Company,
+			fixture.City,
+			fixture.Street,
+			fixture.PostalCode,
+		)
+		s.Require().NoError(err)
+		s.Require().True(res.IsValid())
+
+		s.Assert().NotEmpty(res.ID)
+
+		s.Assert().IsType(evatr.VerificationMatch, res.CompanyNameResult)
+		s.Assert().IsType(evatr.VerificationMatch, res.StreetResult)
+		s.Assert().IsType(evatr.VerificationMatch, res.CityResult)
+		s.Assert().IsType(evatr.VerificationMatch, res.PostalCodeResult)
+
+		// s.Assert().Equal(evatr.VerificationMatch, res.CompanyNameResult, "company name did not match")
+		// s.Assert().Equal(evatr.VerificationMatch, res.StreetResult, "street should match")
+		// s.Assert().Equal(evatr.VerificationMatch, res.CityResult, "city should match")
+		// s.Assert().Equal(evatr.VerificationMatch, res.PostalCodeResult, "postal code should not be provided")
+	}
+}

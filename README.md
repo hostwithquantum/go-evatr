@@ -11,6 +11,7 @@ Go client library for the eVatR API (German VAT ID validation system) of the BZS
 - EU member state information and VIES availability
 - Type-safe error handling with status codes
 - Context-aware API calls
+- Optional transliteration (see [example](./examples/transliterate/), using [github.com/anyascii/go](https://github.com/anyascii/go))
 
 ## Installation
 
@@ -36,12 +37,16 @@ client := evatr.NewClient(
     evatr.WithBaseURL("https://custom.api.url"),
     evatr.WithTimeout(60 * time.Second),
     evatr.WithHTTPClient(httpClient),
+    evatr.WithTransliterate(),
 )
 ```
 
 ### Usage
 
-The API _advertises_ a daily maintenance window from 23:00 - 5:00 (local). Run potential jobs during the workday to avoid issues — see our dependabot and workflow configuration for examples.
+> [!IMPORTANT]
+> Maintenance window and general availability.
+
+The API _advertises_ a daily maintenance window from 23:00 - 5:00 (local). Therefor, it's advised to automated jobs during the workday to avoid issues — see our dependabot and workflow configuration for examples.
 
 ## License
 

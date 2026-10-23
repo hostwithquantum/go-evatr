@@ -29,8 +29,9 @@ var version = func() string {
 
 // Client is the eVATR API client.
 type Client struct {
-	baseURL    string
-	httpClient *http.Client
+	baseURL         string
+	httpClient      *http.Client
+	transliteration bool
 }
 
 // Option is a functional option for configuring the Client.
@@ -57,6 +58,13 @@ func WithTimeout(timeout time.Duration) Option {
 	}
 }
 
+// Enables automatic transliteration of the data.
+func WithTransliteration() Option {
+	return func(c *Client) {
+		c.transliteration = true
+	}
+}
+
 // NewClient returns a new eVATR API client.
 func NewClient(opts ...Option) *Client {
 	c := &Client{
@@ -64,6 +72,7 @@ func NewClient(opts ...Option) *Client {
 		httpClient: &http.Client{
 			Timeout: DefaultTimeout,
 		},
+		transliteration: false,
 	}
 
 	for _, opt := range opts {
